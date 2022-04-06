@@ -1,10 +1,21 @@
 ---
-name: TypeScript
+name: YAML
 
 "on":
   push:
 
 jobs:
+  lint:
+    name: Lint code
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run yamllint
+        uses: actionshub/yamllint@1.0.0
+
   style:
     name: Check style
     runs-on: ubuntu-latest
@@ -23,4 +34,4 @@ jobs:
         run: npm install
 
       - name: Run Prettier
-        run: ./node_modules/.bin/prettier --check "**/*.ts"
+        run: ./node_modules/.bin/prettier --check "**/*.{yaml,yml}"
