@@ -1,1 +1,1 @@
-(()=>{"use strict";if(typeof __nccwpck_require__!=="undefined")__nccwpck_require__.ab=__dirname+"/";var e={};function main(){console.log("Hello, World!")}module.exports=e})();
+(()=>{"use strict";if(typeof __nccwpck_require__!=="undefined")__nccwpck_require__.ab=__dirname+"/";var e={};function main(){console.log("Hello, World!")}main();module.exports=e})();
