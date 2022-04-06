@@ -1,0 +1,26 @@
+---
+name: TypeScript
+
+"on":
+  push:
+
+jobs:
+  style:
+    name: Check style
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node
+        uses: actions/setup-node@v3.0.0
+        with:
+          cache: npm
+          node-version: 16
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Prettier
+        run: npm run lint

@@ -4,6 +4,13 @@
   "private": true,
   "description": "A GitHub Action that sets up itch.io's butler tool",
   "main": "dist/main.js",
+  "scripts": {
+    "lint": "prettier --check --ignore-unknown",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jdno/setup-butler.git"
@@ -19,5 +26,10 @@
   "bugs": {
     "url": "https://github.com/jdno/setup-butler/issues"
   },
-  "homepage": "https://github.com/jdno/setup-butler#readme"
+  "homepage": "https://github.com/jdno/setup-butler#readme",
+  "devDependencies": {
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.7",
+    "prettier": "2.6.2"
+  }
 }
