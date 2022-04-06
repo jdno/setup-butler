@@ -35,3 +35,24 @@ jobs:
             git diff
             exit 1
           fi
+
+  test:
+    name: Run tests
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os:
+          - macos-latest
+          - ubuntu-latest
+          - windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run action
+        uses: ./
+
+      - name: Run butler
+        run: butler -V
