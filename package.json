@@ -1,0 +1,23 @@
+{
+  "name": "setup-butler",
+  "version": "0.0.0",
+  "private": true,
+  "description": "A GitHub Action that sets up itch.io's butler tool",
+  "main": "dist/main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdno/setup-butler.git"
+  },
+  "keywords": [
+    "github",
+    "action",
+    "itch.io",
+    "butler"
+  ],
+  "author": "Jan David Nose",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jdno/setup-butler/issues"
+  },
+  "homepage": "https://github.com/jdno/setup-butler#readme"
+}
