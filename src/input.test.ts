@@ -1,6 +1,6 @@
 import * as core from "@actions/core";
 
-import { getVersion } from "./version";
+import { getVersion } from "./input";
 
 afterEach(() => {
   jest.resetAllMocks();
@@ -19,5 +19,5 @@ test("returns version when set", async () => {
 test("returns latest when not set", async () => {
   const version = await getVersion();
 
-  expect(version).toEqual("latest");
+  expect(version).toEqual("LATEST");
 });

@@ -1,0 +1,17 @@
+---
+name: "Set up butler"
+description: "Set up your GitHub Actions workflow with itch.io's butler tool"
+
+branding:
+  icon: "download-cloud"
+  color: "red"
+
+inputs:
+  version:
+    description: "Version of butler. Example: 14.14.0, 15.21.0"
+    required: false
+    default: "latest"
+
+runs:
+  using: "node16"
+  main: "dist/index.js"
