@@ -1,6 +1,6 @@
 ---
 name: "Set up butler"
-description: "Set up your GitHub Actions workflow with itch.io's butler tool"
+description: "Set up itch.io's butler in your GitHub Actions workflow"
 
 branding:
   icon: "download-cloud"
