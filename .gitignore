@@ -1,3 +1,7 @@
+# tsc writes files into the build directory, which are then packaged into a
+# single file using ncc
+build/
+
 ### Node.gitignore
 # Logs
 logs
