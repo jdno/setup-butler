@@ -45,6 +45,12 @@ If the `version` is not specified, the latest version will be installed.
 👋 This is a welcoming and inclusive project. Be nice and follow our
 [code of conduct](./CODE_OF_CONDUCT.md).
 
+## Acknowledgments
+
+The implementation of this action is inspired by
+[actions/setup-node](https://github.com/actions/setup-node) and
+[bufbuild/buf-setup-action](https://github.com/bufbuild/buf-setup-action).
+
 ## License
 
 This project is released under the terms of the [MIT License](./LICENSE).
