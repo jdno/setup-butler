@@ -3,8 +3,6 @@ changelog:
   exclude:
     labels:
       - R-ignore
-    authors:
-      - dependabot
   categories:
     - title: Security
       labels:
