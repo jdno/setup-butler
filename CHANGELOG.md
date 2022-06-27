@@ -8,6 +8,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0](https://github.com/jdno/setup-butler/releases/tag/v1.1.0)
+
+### Changed
+
+- Bump @actions/core from 1.6.0 to 1.8.2
+  by [@dependabot](https://github.com/dependabot)
+  in [#29](https://github.com/jdno/setup-butler/pull/29)
+- Bump @actions/tool-cache from 1.7.2 to 2.0.1
+  by [@dependabot](https://github.com/dependabot)
+  in [#31](https://github.com/jdno/setup-butler/pull/31)
+- Bump @actions/core from 1.8.2 to 1.9.0
+  by [@dependabot](https://github.com/dependabot)
+  in [#50](https://github.com/jdno/setup-butler/pull/50)
+
+**Full Changelog**:
+<https://github.com/jdno/setup-butler/compare/v1.0.0...v1.1.0>
+
 ## [1.0.0](https://github.com/jdno/setup-butler/releases/tag/v1.0.0)
 
 ### Added
