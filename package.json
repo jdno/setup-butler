@@ -1,6 +1,6 @@
 {
   "name": "setup-butler",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "private": true,
   "description": "Set up itch.io's butler tool in your GitHub Actions workflow",
   "main": "build/main.js",
