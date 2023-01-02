@@ -1,0 +1,23 @@
+---
+name: YAML
+
+"on":
+  push:
+    branches:
+      - main
+    paths:
+      - "**.yml"
+      - "**.yaml"
+  pull_request:
+    paths:
+      - "**.yml"
+      - "**.yaml"
+
+jobs:
+  lint:
+    name: Lint
+    uses: jdno/workflows/.github/workflows/yaml-lint.yml@main
+
+  style:
+    name: Style
+    uses: jdno/workflows/.github/workflows/yaml-style.yml@main

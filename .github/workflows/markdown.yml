@@ -1,0 +1,21 @@
+---
+name: Markdown
+
+"on":
+  push:
+    branches:
+      - main
+    paths:
+      - "**.md"
+  pull_request:
+    paths:
+      - "**.md"
+
+jobs:
+  lint:
+    name: Lint
+    uses: jdno/workflows/.github/workflows/markdown-lint.yml@main
+
+  style:
+    name: Style
+    uses: jdno/workflows/.github/workflows/markdown-style.yml@main
