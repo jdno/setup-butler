@@ -5,13 +5,46 @@ name: JSON
   push:
     branches:
       - main
-    paths:
-      - "**.json"
   pull_request:
-    paths:
-      - "**.json"
 
 jobs:
+  detect-changes:
+    name: Detect changes
+    runs-on: ubuntu-latest
+
+    outputs:
+      any_changed: ${{ steps.detect-changes.outputs.any_changed }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Get changed files
+        id: detect-changes
+        uses: tj-actions/changed-files@v35
+        with:
+          files: |
+            **/*.json
+
+      - name: Print changed files
+        run: |
+          for file in ${{ steps.changed-files-specific.outputs.all_changed_files }}; do
+            echo "$file"
+          done
+
   style:
-    name: Style
-    uses: jdno/workflows/.github/workflows/json-style.yml@main
+    name: Check style
+    runs-on: ubuntu-latest
+
+    needs: detect-changes
+    if: needs.detect-changes.outputs.any_changed == 'true'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: prettier
+        uses: creyD/prettier_action@v4.3
+        with:
+          dry: true
+          prettier_options: "--check **/*.json"
