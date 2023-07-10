@@ -42,7 +42,7 @@ async function getButler(version: string): Promise<string> {
     extractPath,
     "butler",
     version,
-    os.arch()
+    os.arch(),
   );
   core.info(`Cached butler to ${cacheDirectory}.`);
 
@@ -70,7 +70,7 @@ function getArch(): string {
       break;
     default:
       throw new Error(
-        `butler is not supported on the ${os.arch()} architecture`
+        `butler is not supported on the ${os.arch()} architecture`,
       );
   }
 
@@ -94,7 +94,7 @@ function getPlatform(): string {
       break;
     default:
       throw new Error(
-        `butler is not supported on the ${os.platform()} platform`
+        `butler is not supported on the ${os.platform()} platform`,
       );
   }
 
