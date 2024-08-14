@@ -32,8 +32,8 @@
   "homepage": "https://github.com/jdno/setup-butler#readme",
   "devDependencies": {
     "@types/jest": "^29.4.0",
-    "@typescript-eslint/eslint-plugin": "^7.0.0",
-    "@typescript-eslint/parser": "^7.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
     "@vercel/ncc": "^0.38.0",
     "eslint": "^8.35.0",
     "eslint-config-prettier": "^9.0.0",
