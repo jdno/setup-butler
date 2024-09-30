@@ -69,9 +69,14 @@ function getArch(): string {
       arch = "i386";
       break;
     default:
-      throw new Error(
-        `butler is not supported on the ${os.arch()} architecture`,
-      );
+      if (getPlatform() == "darwin" && os.arch() == "arm64") {
+        arch = "amd64";
+      }
+      else {
+        throw new Error(
+          `butler is not supported on the ${os.arch()} architecture`,
+        );
+      }
   }
 
   core.info(`Architecture has been discovered as '${arch}'.`);
