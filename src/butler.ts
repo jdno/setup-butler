@@ -53,7 +53,7 @@ function getDownloadUrl(version: string): string {
   const platform = getPlatform();
   const arch = getArch();
 
-  return `https://broth.itch.ovh/butler/${platform}-${arch}/${version}/archive/default`;
+  return `https://broth.itch.zone/butler/${platform}-${arch}/${version}/archive/default`;
 }
 
 function getArch(): string {
