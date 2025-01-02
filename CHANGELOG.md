@@ -8,6 +8,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.0](https://github.com/jdno/setup-butler/releases/tag/v1.6.0)
+
+### Changed
+
+- Update dependency typescript to v5.7.2 by [@renovate] in [#411](https://github.com/jdno/setup-butler/pull/411)
+
+### Fixed
+
+- Update domain for itch's CDN by [@fpscan](https://github.com/fpscan) in [#421](https://github.com/jdno/setup-butler/pull/421)
+
+**Full Changelog**: <https://github.com/jdno/setup-butler/compare/v1.5.0...v1.6.0>
+
 ## [1.5.0](https://github.com/jdno/setup-butler/releases/tag/v1.5.0)
 
 ### Changed
