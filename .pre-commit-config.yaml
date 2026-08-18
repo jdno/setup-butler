@@ -1,0 +1,27 @@
+# pre-commit configuration
+#
+# We use pre-commit to enforce a consistent style in our repositories. The hooks
+# check for a few common issues with files, and then execute the
+# `just pre-commit` to run formatters and linters.
+#
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+---
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: end-of-file-fixer
+        exclude: ^.flox/env/manifest.lock$
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+  - repo: local
+    hooks:
+      - id: just
+        name: just
+        entry: just
+        args: ["pre-commit"]
+        language: system
+        pass_filenames: false

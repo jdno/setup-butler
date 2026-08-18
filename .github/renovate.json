@@ -4,5 +4,8 @@
 
   "assignees": ["jdno"],
   "reviewers": ["jdno"],
-  "semanticCommits": "disabled"
+  "semanticCommits": "disabled",
+  "pre-commit": {
+    "enabled": true
+  }
 }

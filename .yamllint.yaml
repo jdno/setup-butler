@@ -1,0 +1,14 @@
+---
+extends: default
+
+ignore: |
+  .claude/*
+  .flox/*
+  node_modules/*
+
+rules:
+  comments:
+    min-spaces-from-content: 1
+  line-length:
+    ignore: |
+      .github/workflows/*
