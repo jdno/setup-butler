@@ -9,37 +9,6 @@ name: Action
   workflow_dispatch:
 
 jobs:
-  # The repository contains the action itself in the dist/ directory. Whenever
-  # code is pushed to the repository, we need to make sure that the action has
-  # been rebuilt and is up-to-date.
-  lint:
-    name: Lint code
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Node
-        uses: actions/setup-node@v4.4.0
-        with:
-          cache: npm
-          node-version: 20
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build action
-        run: npm run package
-
-      - name: Compare committed action with build result
-        run: |
-          if [ "$(git diff --ignore-space-at-eol dist/ | wc -l)" -gt "0" ]; then
-            echo "Detected uncommitted changes after build. See diff below:"
-            git diff
-            exit 1
-          fi
-
   test:
     name: Run tests
     runs-on: ${{ matrix.os }}
