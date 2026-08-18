@@ -1,0 +1,43 @@
+# Flox manifest version managed by Flox CLI
+schema-version = "1.13.0"
+
+[install]
+# Node.js ships with npm, which installs the TypeScript toolchain (tsc, ncc,
+# jest, eslint) declared as devDependencies in package.json
+nodejs.pkg-path = "nodejs"
+
+# Local development tools
+git.pkg-path = "git"
+git.outputs = "all"
+just.pkg-path = "just"
+just.outputs = "all"
+markdownlint-cli.pkg-path = "markdownlint-cli"
+parallel.pkg-path = "parallel"
+parallel.outputs = "all"
+pre-commit.pkg-path = "pre-commit"
+pre-commit.outputs = "all"
+prettier.pkg-path = "prettier"
+yamllint.pkg-path = "yamllint"
+yamllint.outputs = "all"
+zizmor.pkg-path = "zizmor"
+
+[vars]
+
+[hook]
+on-activate = '''
+# Install JavaScript dependencies when they are missing so that the tools from
+# package.json are available inside the environment.
+if [ ! -d "$FLOX_ENV_PROJECT/node_modules" ]; then
+  (cd "$FLOX_ENV_PROJECT" && npm ci)
+fi
+'''
+
+[profile]
+
+[services]
+
+[include]
+
+[build]
+
+[options]
