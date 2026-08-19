@@ -28,6 +28,7 @@ pre-commit-fix:
 [private]
 pre-commit-verify:
     #!/usr/bin/env -S parallel --shebang --ungroup --jobs {{ num_cpus() }}
+    just lint-github-actions
     just lint-markdown
     just lint-typescript
     just lint-yaml
@@ -52,6 +53,10 @@ format-typescript fix="false": (prettier fix "{ts,js,mjs,cjs}")
 
 # Format YAML files
 format-yaml fix="false": (prettier fix "{yaml,yml}")
+
+# Lint GitHub Actions workflows
+lint-github-actions:
+    zizmor -p .
 
 # Lint Markdown files
 lint-markdown:

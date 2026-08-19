@@ -63,6 +63,8 @@ jobs:
 
       - name: Run check with Just
         uses: flox/activate-action@7065dcbe5583b7b015f07a8ebd49d7266e3053e8 # v1.1.1
+        env:
+          GH_TOKEN: ${{ github.token }}
         with:
           command: just ${{ matrix.target }}
 
