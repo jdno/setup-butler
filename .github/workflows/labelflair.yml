@@ -1,0 +1,38 @@
+---
+name: Labelflair
+
+"on":
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  action:
+    name: Sync labels
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      issues: write # Required to manage labels
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Sync GitHub Issues labels
+        uses: jdno/labelflair@5708f99c820b8b827f31def69a5df857e1faa8d1 # v0.3.1
+        with:
+          config-file: .github/labelflair.toml
+          delete-other-labels: true
+          # Only run this step on the main branch to avoid creating labels in pull requests
+          dry-run: ${{ github.ref != 'refs/heads/main' }}
