@@ -12,3 +12,13 @@ export async function getVersion(): Promise<string> {
 
   return version;
 }
+
+export function getArchitecture(): string {
+  const architecture = core.getInput("architecture");
+
+  if (architecture) {
+    core.info(`architecture has been set to '${architecture}'.`);
+  }
+
+  return architecture;
+}
