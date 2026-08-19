@@ -3,7 +3,7 @@ schema-version = "1.13.0"
 
 [install]
 # Node.js ships with npm, which installs the TypeScript toolchain (tsc, ncc,
-# jest, eslint) declared as devDependencies in package.json
+# jest, oxlint) declared as devDependencies in package.json
 nodejs.pkg-path = "nodejs"
 
 # Local development tools

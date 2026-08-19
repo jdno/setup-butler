@@ -64,7 +64,7 @@ lint-markdown:
 
 # Lint TypeScript files
 lint-typescript: install
-    npx eslint "**/*.ts"
+    npx oxlint
 
 # Lint YAML files
 lint-yaml:
