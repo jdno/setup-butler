@@ -1,13 +1,18 @@
 import * as core from "@actions/core";
 
 export async function getVersion(): Promise<string> {
-  let version = core.getInput("butler-version");
+  let version = core.getInput("version");
 
   if (!version) {
-    console.log(`butler-version has not been set. Defaulting to 'latest'.`);
+    core.info("version has not been set. Defaulting to 'latest'.");
     version = "LATEST";
   } else {
-    console.log(`butler-version has been set to '${version}'.`);
+    core.info(`version has been set to '${version}'.`);
+  }
+
+  // butler's release channels name the latest version in uppercase
+  if (version.toLowerCase() === "latest") {
+    version = "LATEST";
   }
 
   return version;
