@@ -70,13 +70,13 @@ lint-typescript: install
 lint-yaml:
     yamllint .
 
-# Run a subset of checks as pre-commit hooks
-pre-commit:
-    @just pre-commit-checks
-
 # Auto-format files with oxfmt
 oxfmt fix="false" extension="*": install
     npx oxfmt {{ if fix == "true" { "--write" } else { "--list-different" } }} "**/*.{{ extension }}"
+
+# Run a subset of checks as pre-commit hooks
+pre-commit:
+    @just pre-commit-checks
 
 # Run the tests
 test-typescript: install
