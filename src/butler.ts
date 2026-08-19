@@ -96,9 +96,6 @@ export function getArch(nodeArch: string = os.arch()): string {
     case "arm64":
       arch = "arm64";
       break;
-    case "ia32":
-      arch = "i386";
-      break;
     default:
       throw new Error(
         `butler is not supported on the ${nodeArch} architecture`,

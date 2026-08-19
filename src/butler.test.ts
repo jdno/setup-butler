@@ -20,13 +20,15 @@ describe("getArch", () => {
     expect(getArch("arm64")).toEqual("arm64");
   });
 
-  test("maps ia32 to i386", () => {
-    expect(getArch("ia32")).toEqual("i386");
-  });
-
   test("throws for an unsupported architecture", () => {
     expect(() => getArch("ppc64")).toThrow(
       "butler is not supported on the ppc64 architecture",
+    );
+  });
+
+  test("throws for a 32-bit architecture", () => {
+    expect(() => getArch("ia32")).toThrow(
+      "butler is not supported on the ia32 architecture",
     );
   });
 
