@@ -1,9 +1,8 @@
-# Flox manifest version managed by Flox CLI
 schema-version = "1.13.0"
 
 [install]
 # Node.js ships with npm, which installs the TypeScript toolchain (tsc, ncc,
-# jest, oxlint) declared as devDependencies in package.json
+# jest, oxlint, oxfmt) declared as devDependencies in package.json
 nodejs.pkg-path = "nodejs"
 
 # Local development tools
@@ -16,7 +15,6 @@ parallel.pkg-path = "parallel"
 parallel.outputs = "all"
 pre-commit.pkg-path = "pre-commit"
 pre-commit.outputs = "all"
-prettier.pkg-path = "prettier"
 yamllint.pkg-path = "yamllint"
 yamllint.outputs = "all"
 zizmor.pkg-path = "zizmor"

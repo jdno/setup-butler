@@ -24,6 +24,7 @@
     "@types/jest": "^30.0.0",
     "@vercel/ncc": "^0.38.0",
     "jest": "^30.0.0",
+    "oxfmt": "^0.64.0",
     "oxlint": "^1.79.0",
     "ts-jest": "^29.0.5",
     "typescript": "^5.0.0"
