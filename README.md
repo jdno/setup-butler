@@ -11,7 +11,7 @@ the `PATH`:
 ```yaml
 steps:
   - name: Set up butler
-    uses: jdno/setup-butler@v1
+    uses: jdno/setup-butler@v2.0.0
 
   - name: Print butler version
     run: butler -V
@@ -35,7 +35,7 @@ different architecture than the runner's, for example the `amd64` build on an
 ```yaml
 steps:
   - name: Set up butler
-    uses: jdno/setup-butler@v1
+    uses: jdno/setup-butler@v2.0.0
     with:
       architecture: amd64
 ```
@@ -51,7 +51,7 @@ installed.
 ```yaml
 steps:
   - name: Set up butler
-    uses: jdno/setup-butler@v1
+    uses: jdno/setup-butler@v2.0.0
     with:
       version: 15.20.0
 ```
