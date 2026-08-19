@@ -20,7 +20,7 @@ pre-commit-checks: pre-commit-fix pre-commit-verify
 # sources.
 [private]
 pre-commit-fix:
-    just prettier true
+    just oxfmt true
     just build-action
 
 # Every recipe that only reads, in parallel: the tree has stopped changing, so
@@ -43,16 +43,16 @@ check-action: build-action
     git diff --exit-code --stat --ignore-space-at-eol -- dist/ || { echo "dist/ is out of date. Run 'just build-action' and commit the result."; exit 1; }
 
 # Format JSON files
-format-json fix="false": (prettier fix "{json,json5}")
+format-json fix="false": (oxfmt fix "{json,json5}")
 
 # Format Markdown files
-format-markdown fix="false": (prettier fix "md")
+format-markdown fix="false": (oxfmt fix "md")
 
 # Format TypeScript and JavaScript files
-format-typescript fix="false": (prettier fix "{ts,js,mjs,cjs}")
+format-typescript fix="false": (oxfmt fix "{ts,js,mjs,cjs}")
 
 # Format YAML files
-format-yaml fix="false": (prettier fix "{yaml,yml}")
+format-yaml fix="false": (oxfmt fix "{yaml,yml}")
 
 # Lint GitHub Actions workflows
 lint-github-actions:
@@ -70,13 +70,13 @@ lint-typescript: install
 lint-yaml:
     yamllint .
 
+# Auto-format files with oxfmt
+oxfmt fix="false" extension="*": install
+    npx oxfmt {{ if fix == "true" { "--write" } else { "--list-different" } }} "**/*.{{ extension }}"
+
 # Run a subset of checks as pre-commit hooks
 pre-commit:
     @just pre-commit-checks
-
-# Auto-format files with prettier
-prettier fix="false" extension="*":
-    prettier {{ if fix == "true" { "--write" } else { "--list-different" } }} --ignore-unknown "**/*.{{ extension }}"
 
 # Run the tests
 test-typescript: install
