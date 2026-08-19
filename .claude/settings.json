@@ -1,0 +1,38 @@
+{
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
+  },
+  "enabledPlugins": {
+    "simple-english@simple-english": true
+  },
+  "extraKnownMarketplaces": {
+    "simple-english": {
+      "source": {
+        "source": "github",
+        "repo": "AminBlg/SimpleEnglish"
+      }
+    }
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git checkout:*)",
+      "Bash(git pull:*)",
+      "Bash(git switch:*)",
+      "Bash(just pre-commit:*)"
+    ]
+  },
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "filesystem": {
+      "allowWrite": [
+        "~/.cache/flox",
+        ".flox/cache",
+        ".flox/log",
+        ".flox/run"
+      ]
+    }
+  }
+}
