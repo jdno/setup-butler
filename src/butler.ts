@@ -4,7 +4,11 @@ import * as os from "os";
 import * as io from "@actions/io";
 import * as cache from "@actions/tool-cache";
 
-import { getVersion } from "./input";
+import { getArchitecture, getVersion } from "./input";
+
+// The architectures that can be requested with the `architecture` input. They
+// are named after butler's release channels.
+const SUPPORTED_ARCHITECTURES = ["amd64", "arm64"];
 
 export async function installButler() {
   const version = await getVersion();
@@ -22,17 +26,28 @@ export async function installButler() {
 }
 
 async function getButler(version: string): Promise<string> {
-  const butlerPath = cache.find("butler", version);
+  const platform = getPlatform();
+  const arch = getArch();
+
+  const butlerPath = cache.find("butler", version, arch);
 
   if (butlerPath !== "") {
     core.info(`Found butler in cache at ${butlerPath}.`);
     return butlerPath;
   }
 
-  const downloadUrl = getDownloadUrl(version);
+  const downloadUrl = getDownloadUrl(version, platform, arch);
 
   core.info(`Downloading butler from ${downloadUrl}...`);
-  const downloadPath = await cache.downloadTool(downloadUrl);
+  let downloadPath: string;
+  try {
+    downloadPath = await cache.downloadTool(downloadUrl);
+  } catch (error) {
+    const reason = error instanceof Error ? error.message : String(error);
+    throw new Error(
+      `Failed to download butler ${version} for ${platform}-${arch} from ${downloadUrl}: ${reason}`,
+    );
+  }
 
   core.info("Extracting butler...");
   const extractPath = await cache.extractZip(downloadPath);
@@ -42,35 +57,51 @@ async function getButler(version: string): Promise<string> {
     extractPath,
     "butler",
     version,
-    os.arch(),
+    arch,
   );
   core.info(`Cached butler to ${cacheDirectory}.`);
 
   return cacheDirectory;
 }
 
-function getDownloadUrl(version: string): string {
-  const platform = getPlatform();
-  const arch = getArch();
-
+export function getDownloadUrl(
+  version: string,
+  platform: string,
+  arch: string,
+): string {
   return `https://broth.itch.zone/butler/${platform}-${arch}/${version}/archive/default`;
 }
 
-function getArch(): string {
+export function getArch(nodeArch: string = os.arch()): string {
+  const architecture = getArchitecture();
+
+  if (architecture !== "") {
+    if (!SUPPORTED_ARCHITECTURES.includes(architecture)) {
+      throw new Error(
+        `butler is not available for the ${architecture} architecture. Supported architectures are: ${SUPPORTED_ARCHITECTURES.join(", ")}`,
+      );
+    }
+
+    return architecture;
+  }
+
   let arch;
 
-  switch (os.arch()) {
+  switch (nodeArch) {
     // The available architectures can be found at:
     // https://nodejs.org/api/process.html#process_process_arch
     case "x64":
       arch = "amd64";
+      break;
+    case "arm64":
+      arch = "arm64";
       break;
     case "ia32":
       arch = "i386";
       break;
     default:
       throw new Error(
-        `butler is not supported on the ${os.arch()} architecture`,
+        `butler is not supported on the ${nodeArch} architecture`,
       );
   }
 
@@ -79,10 +110,10 @@ function getArch(): string {
   return arch;
 }
 
-function getPlatform(): string {
+export function getPlatform(nodePlatform: string = os.platform()): string {
   let platform;
 
-  switch (os.platform()) {
+  switch (nodePlatform) {
     case "darwin":
       platform = "darwin";
       break;
@@ -94,7 +125,7 @@ function getPlatform(): string {
       break;
     default:
       throw new Error(
-        `butler is not supported on the ${os.platform()} platform`,
+        `butler is not supported on the ${nodePlatform} platform`,
       );
   }
 

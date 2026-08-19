@@ -24,10 +24,16 @@ jobs:
 
     strategy:
       matrix:
-        os:
-          - macos-15-intel
-          - ubuntu-latest
-          - windows-latest
+        include:
+          - os: macos-15-intel
+          - os: macos-latest
+          # Run the amd64 build on an arm64 runner to test the architecture
+          # input, which the macOS runners support through Rosetta.
+          - os: macos-latest
+            architecture: amd64
+          - os: ubuntu-24.04-arm
+          - os: ubuntu-latest
+          - os: windows-latest
 
     steps:
       - name: Checkout code
@@ -37,6 +43,8 @@ jobs:
 
       - name: Run action
         uses: ./
+        with:
+          architecture: ${{ matrix.architecture }}
 
       - name: Run butler
         run: butler -V

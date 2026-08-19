@@ -7,6 +7,9 @@ branding:
   color: "red"
 
 inputs:
+  architecture:
+    description: "Architecture of butler. Example: amd64, arm64"
+    required: false
   version:
     description: "Version of butler. Example: 14.14.0, 15.21.0"
     required: false

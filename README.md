@@ -21,9 +21,27 @@ steps:
 
 The behavior of `setup-butler` can be customized with these settings.
 
-| Parameter | Description           | Default  |
-| --------- | --------------------- | -------- |
-| `version` | The version of butler | `latest` |
+| Parameter      | Description                | Default                   |
+| -------------- | -------------------------- | ------------------------- |
+| `architecture` | The architecture of butler | The runner's architecture |
+| `version`      | The version of butler      | `latest`                  |
+
+### `architecture`
+
+The `architecture` parameter can be used to install a butler build for a
+different architecture than the runner's, for example the `amd64` build on an
+`arm64` runner. Supported values are `amd64` and `arm64`.
+
+```yaml
+steps:
+  - name: Set up butler
+    uses: jdno/setup-butler@v1
+    with:
+      architecture: amd64
+```
+
+If the `architecture` is not specified, the architecture of the runner will be
+used.
 
 ### `version`
 
@@ -39,6 +57,17 @@ steps:
 ```
 
 If the `version` is not specified, the latest version will be installed.
+
+## Supported Platforms
+
+butler is available for the following platforms and architectures. The `arm64`
+builds are available starting with butler 15.25.0.
+
+| Platform | `amd64` | `arm64` |
+| -------- | ------- | ------- |
+| Linux    | Yes     | Yes     |
+| macOS    | Yes     | Yes     |
+| Windows  | Yes     | No      |
 
 ## Code of Conduct
 
